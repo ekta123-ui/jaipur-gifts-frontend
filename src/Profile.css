@@ -1,0 +1,200 @@
+.profile-page {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #333;
+}
+
+.profile-page h2 {
+    font-size: 2rem;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+.user-info {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    border: 1px solid #e9ecef;
+}
+
+.user-info p {
+    margin: 5px 0;
+    font-size: 1rem;
+}
+
+.orders-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+.search-container {
+    flex: 1;
+    max-width: 400px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 999px;
+    border: 1px solid #e9ecef;
+    background: #fff;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--saffron);
+    box-shadow: 0 4px 12px rgba(232, 72, 10, 0.15);
+    transform: translateY(-1px);
+}
+
+.orders-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.order-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.order-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.order-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Status Colors */
+.status-badge.confirmed { background: #e3f2fd; color: #1976d2; }
+.status-badge.processing { background: #fff3e0; color: #f57c00; }
+.status-badge.dispatched { background: #f3e5f5; color: #7b1fa2; }
+.status-badge.delivered { background: #e8f5e9; color: #388e3c; }
+.status-badge.cancelled { background: #ffebee; color: #d32f2f; }
+
+.order-items {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+    margin-bottom: 15px;
+}
+
+.order-items ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.order-items li {
+    padding: 8px 0;
+    font-size: 0.95rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.custom-note {
+    font-style: italic;
+    color: #666;
+    font-size: 0.85rem;
+    margin-top: 4px;
+    padding-left: 10px;
+    border-left: 2px solid #ddd;
+}
+
+.order-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.repeat-button {
+    background: var(--saffron, #E8480A);
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(232, 72, 10, 0.2);
+}
+
+.repeat-button:hover {
+    background: var(--maroon, #7C1631);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(124, 22, 49, 0.3);
+}
+
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 40px;
+    padding-bottom: 40px;
+}
+
+.pagination-button {
+    background: #fff;
+    border: 1px solid #e9ecef;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 600;
+}
+
+.pagination-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination-button:not(:disabled):hover {
+    border-color: var(--saffron);
+    color: var(--saffron);
+}
+
+@media (max-width: 600px) {
+    .order-summary, .order-footer, .orders-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .search-container {
+        max-width: 100%;
+    }
+}
