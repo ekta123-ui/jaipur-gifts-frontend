@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { HiOutlineGift } from "react-icons/hi";
-import { FaInstagram, FaFacebookF, FaTwitter, FaWhatsapp } from "react-icons/fa";
+import { FaInstagram, FaFacebookF, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
     const clearCache = () => {
@@ -34,7 +34,7 @@ const Footer = () => {
                             Crafting unforgettable moments with luxury personalized gifts from the heart of Rajasthan.
                         </p>
                         <div className="flex gap-3">
-                            {[FaInstagram, FaFacebookF, FaTwitter, FaWhatsapp].map((Icon, i) => (
+                            {[FaInstagram, FaFacebookF, FaTwitter].map((Icon, i) => (
                                 <motion.a key={i} href="#" whileHover={{ y: -4, scale: 1.15 }}
                                     className="w-10 h-10 rounded-xl flex items-center justify-center transition-all text-white shadow-md"
                                     style={{ background: 'linear-gradient(135deg, #E8480A, #D4A017)' }}>
@@ -48,9 +48,9 @@ const Footer = () => {
                     <div>
                         <h3 className="text-xs font-bold uppercase tracking-[0.25em] text-gray-900 mb-6">Quick Links</h3>
                         <ul className="space-y-3">
-                            {['Home', 'Variety', 'Feedback', 'Login'].map((link) => (
+                            {['Home', 'Variety', 'Feedback', 'Login', 'Admin Portal'].map((link) => (
                                 <li key={link}>
-                                    <Link to={link === 'Home' ? '/' : `/${link.toLowerCase()}`}
+                                    <Link to={link === 'Home' ? '/' : `/${link === 'Admin Portal' ? 'admin/login' : link.toLowerCase()}`}
                                         className="text-gray-400 hover:text-orange-600 font-medium transition-colors text-sm flex items-center gap-2 group">
                                         <span className="w-1 h-1 rounded-full bg-amber-400 opacity-0 group-hover:opacity-100 transition-opacity" />
                                         {link}

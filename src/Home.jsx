@@ -47,7 +47,6 @@ const Home = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [customization, setCustomization] = useState("");
-    const [customizing, setCustomizing] = useState(false);
     const [wishlist, setWishlist] = useState([]);
 
     useEffect(() => {
@@ -89,34 +88,9 @@ const Home = () => {
         }
     };
 
-    const handleOrderNavigation = async (e) => {
+    const handleOrderNavigation = (e) => {
         if (e) e.preventDefault();
-        const baseMsg = "Hello! I would like to order a custom gift from Royal Jaipur Gifts.";
-        const finalMsg = customization.trim() 
-            ? `${baseMsg}\n\n*Customization Details:*\n${customization}`
-            : baseMsg;
-
-        if (customization.trim()) {
-            setCustomizing(true);
-            try {
-                await customRequestService.create({
-                    name: localStorage.getItem('userName') || '',
-                    email: localStorage.getItem('userEmail') || '',
-                    message: customization.trim(),
-                    source: 'home',
-                });
-            } catch (err) {
-                console.error("Failed to save customization request:", err);
-            } finally {
-                setCustomizing(false);
-            }
-        }
-
-        const adminNumber = import.meta.env.VITE_ADMIN_PHONE || "919910863480";
-        window.open(
-            `https://wa.me/${adminNumber}?text=${encodeURIComponent(finalMsg)}`,
-            '_blank'
-        );
+        navigate('/customize', { state: { initialMessage: customization.trim() } });
     };
 
     return (
@@ -200,11 +174,10 @@ const Home = () => {
                         whileHover={{ scale: 1.05, y: -3 }}
                         whileTap={{ scale: 0.97 }}
                         onClick={handleOrderNavigation}
-                        disabled={customizing}
                         className="flex items-center gap-2 px-8 py-4 rounded-full font-bold text-base border-2 text-gray-700 hover:border-orange-400 hover:text-orange-700 transition-all"
                         style={{ borderColor: 'rgba(232,72,10,0.25)', background: 'rgba(255,255,255,0.7)', backdropFilter: 'blur(12px)' }}
                     >
-                        <HiOutlineShoppingBag /> {customizing ? 'Saving...' : 'Order Now'}
+                        <HiOutlineShoppingBag /> Design Your Gift
                     </motion.button>
                 </motion.div>
 

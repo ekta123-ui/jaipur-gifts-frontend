@@ -7,7 +7,7 @@ const GiftCardButtons = ({ product }) => {
     const navigate = useNavigate();
 
     const handleAction = () => {
-        navigate('/checkout', { state: { product } });
+        navigate(`/customize/${product.giftId}`, { state: { product } });
     };
 
     const handleAddToCart = () => {
@@ -47,7 +47,7 @@ const GiftCardButtons = ({ product }) => {
                     transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }}
                 />
                 <HiOutlineShoppingBag className="text-white text-base relative z-10" />
-                <span className="relative z-10">Buy Now</span>
+                <span className="relative z-10">Customize & Checkout</span>
             </motion.button>
         </div>
     );

@@ -307,6 +307,14 @@ const ProductDetail = () => {
 
                         {/* Customize and Chat Buttons */}
                         <GiftCardButtons product={product} />
+                        <div className="mt-6">
+                            <button
+                                onClick={() => navigate(`/customize/${product.giftId}`)}
+                                className="w-full py-3 rounded-2xl bg-gradient-to-r from-pink-600 to-orange-500 text-white font-black text-sm shadow-xl shadow-pink-200 transition-transform active:scale-95"
+                            >
+                                Request Customization for this Gift
+                            </button>
+                        </div>
                     </motion.div>
                 </div>
 

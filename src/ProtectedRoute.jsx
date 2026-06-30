@@ -10,12 +10,13 @@ const ProtectedRoute = ({ children, adminOnly = false }) => {
 
     if (!isAuthenticated) {
         // Redirect to login, but save the current location so we can redirect back after login
-        return <Navigate to="/login" state={{ from: location }} replace />;
+        const destination = adminOnly ? '/admin/login' : '/login';
+        return <Navigate to={destination} state={{ from: location }} replace />;
     }
 
-    // RBAC: If route requires admin and user is not an admin, redirect to home
+    // RBAC: If route requires admin and user is not an admin, redirect to admin login
     if (adminOnly && role !== 'admin') {
-        return <Navigate to="/" replace />;
+        return <Navigate to="/admin/login" state={{ from: location }} replace />;
     }
 
     return children;

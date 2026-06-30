@@ -85,9 +85,9 @@ const Navbar = () => {
         displayLinks.push({ name: 'Cart', path: '/cart', icon: <HiOutlineShoppingBag /> });
     }
 
-    // Add Admin Dashboard link if user is an admin
-    if (isAdmin && !displayLinks.find(l => l.path === '/admin')) {
-        displayLinks.splice(displayLinks.length - 1, 0, { name: 'Admin', path: '/admin', icon: <HiOutlineAdjustments /> });
+    // Add Admin Portal entry for all users
+    if (!displayLinks.find(l => l.path === '/admin/login')) {
+        displayLinks.splice(displayLinks.length - 1, 0, { name: 'Admin Portal', path: '/admin/login', icon: <HiOutlineAdjustments /> });
     }
 
     return (

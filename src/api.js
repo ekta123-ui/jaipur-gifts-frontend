@@ -1,7 +1,8 @@
 import axios from 'axios';
 
+const backendBaseUrl = (import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/$/, '');
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+    baseURL: `${backendBaseUrl}/api`,
     headers: {
         'Content-Type': 'application/json',
     }
@@ -79,27 +80,14 @@ export const orderService = {
 
     // Admin: Update status (e.g., 'confirmed' to 'dispatched')
     updateOrderStatus: (id, status) => api.patch(`/orders/${id}/status`, { status }),
+    uploadOrderImage: (formData) => api.post('/orders/upload-image', formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    }),
 
     // Updated to use the public tracking route /api/orders/track/:id
     fetchOrderStatus: (orderId) => api.get(`/orders/track/${orderId}`),
-
-    // Helper to redirect users to WhatsApp to message admin for customization
-    contactAdminForCustomization: (giftName, giftId) => {
-        const adminNumber = "919910863480";
-        const text = `Hi, I'm interested in customizing the "${giftName}" (Gift ID: ${giftId}). Could you please help me?`;
-        window.open(`https://wa.me/${adminNumber}?text=${encodeURIComponent(text)}`, '_blank');
-    },
-
-    // Open WhatsApp to notify admin about a new order
-    sendWhatsAppNotification: (order) => {
-        // The 9910863480 is a placeholder and should be replaced with the actual admin's WhatsApp number.
-        // It's highly recommended to fetch this number from a secure backend configuration
-        // or environment variable rather than hardcoding it for production.
-        const adminNumber = import.meta.env.VITE_ADMIN_PHONE || "919910863480";
-        const itemsList = order.items.map(i => `${i.quantity}x ${i.name}`).join(', ');
-        const text = `👑 *New Royal Order Placed!*\n\n*Customer:* ${order.deliveryAddress.fullName}\n*Items:* ${itemsList}\n*Total:* ₹${order.totalAmount}\n*Address:* ${order.deliveryAddress.addressLine1}, ${order.deliveryAddress.city}\n\nPlease confirm this order.`;
-        window.open(`https://wa.me/${adminNumber}?text=${encodeURIComponent(text)}`, '_blank');
-    }
 };
 
 export const giftService = {
@@ -128,6 +116,14 @@ export const customRequestService = {
 
 export const homepageService = {
     fetchMostBoughtGifts: (limit = 10) => api.get(`/orders/most-bought`, { params: { limit } }),
+};
+
+export const adminService = {
+    fetchDashboard: () => api.get('/admin/dashboard'),
+    fetchUsers: () => api.get('/admin/users'),
+    updateUser: (id, data) => api.patch(`/admin/users/${id}`, data),
+    deleteUser: (id) => api.delete(`/admin/users/${id}`),
+    savePushSubscription: (subscription) => api.post('/admin/push-subscribe', subscription),
 };
 
 export default api;

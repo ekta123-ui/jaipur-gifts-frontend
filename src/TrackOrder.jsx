@@ -84,7 +84,7 @@ const TrackOrder = () => {
                                     </div>
                                     <div className="text-right">
                                         <p className="text-[10px] font-black uppercase tracking-widest text-gray-400">Est. Delivery</p>
-                                        <p className="font-bold text-gray-700">{new Date(order.estimatedDelivery).toLocaleDateString()}</p>
+                                        <p className="font-bold text-gray-700">{order.estimatedDeliveryDate ? new Date(order.estimatedDeliveryDate).toLocaleDateString() : 'TBA'}</p>
                                     </div>
                                 </div>
 

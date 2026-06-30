@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { homepageService, orderService } from '../api';
+import { useNavigate } from 'react-router-dom';
+import { homepageService } from '../api';
 import { getPrice } from '../formatters';
 import { toast } from 'react-toastify'; // Assuming you have react-toastify for notifications
 
 const MostBoughtGifts = () => {
     const [gifts, setGifts] = useState([]);
+    const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -29,8 +31,7 @@ const MostBoughtGifts = () => {
 
     const handleCustomize = (gift) => {
         // Navigate to the customization form for this specific gift
-        // This replaces the old WhatsApp redirect flow
-        window.location.href = `/customize/${gift.giftId}`;
+        navigate(`/customize/${gift.giftId}`);
     };
 
     if (loading) {
