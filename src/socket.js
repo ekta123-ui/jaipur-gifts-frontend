@@ -20,15 +20,6 @@ class SocketService {
         });
     }
 
-    joinAdminRoom() {
-        if (!this.socket?.connected) {
-            console.warn("Socket is not connected. Admin room join skipped.");
-            return;
-        }
-
-        this.socket.emit('join_admin', { token: localStorage.getItem('token') });
-    }
-
     sendMessage(messageData) {
         if (!this.socket?.connected) {
             console.warn("Socket is not connected. Message not sent.");

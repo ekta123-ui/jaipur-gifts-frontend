@@ -9,6 +9,7 @@ import TrackOrder from './TrackOrder';
 import ProductDetail from './ProductDetail';
 import CustomizeRequest from './CustomizeRequest';
 import OrderForm from './OrderForm';
+import OrderConfirmation from './OrderConfirmation';
 import Cart from './Cart';
 import UserProfile from './UserProfile';
 import GiftBackground from './GiftBackground';
@@ -16,8 +17,6 @@ import Footer from './Footer';
 import ConnectionStatus from './ConnectionStatus';
 import BackToTop from './BackToTop';
 import ProtectedRoute from './ProtectedRoute';
-import AdminLogin from './admin/AdminLogin';
-import AdminDashboard from './admin/AdminDashboard';
 import './index.css';
 
 function App() {
@@ -45,14 +44,12 @@ function App() {
             <OrderForm />
           </ProtectedRoute>
         } />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/admin/login" element={<AdminLogin />} />
-        <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
-        <Route path="/admin/dashboard" element={
-          <ProtectedRoute adminOnly={true}>
-            <AdminDashboard />
+        <Route path="/order-confirmation" element={
+          <ProtectedRoute>
+            <OrderConfirmation />
           </ProtectedRoute>
         } />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
         <Route path="/feedback" element={<Feedback />} />
       </Routes>

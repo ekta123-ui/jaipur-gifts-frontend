@@ -23,6 +23,18 @@ const CustomizeRequest = () => {
         }
     }, [id, product]);
 
+    const handlePhotoChange = (event) => {
+        const file = event.target.files?.[0];
+        if (file) {
+            setPhotoFile(file);
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                setPhotoPreview(e.target?.result || '');
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         setError('');

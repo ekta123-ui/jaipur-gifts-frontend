@@ -72,14 +72,6 @@ export const orderService = {
     // User: Fetch personal orders
     fetchMyOrders: () => api.get('/orders/my'),
 
-    // Admin: Fetch all orders
-    fetchAllOrders: () => api.get('/orders'),
-
-    // Admin: Fetch dashboard totals
-    fetchStats: () => api.get('/orders/stats/summary'),
-
-    // Admin: Update status (e.g., 'confirmed' to 'dispatched')
-    updateOrderStatus: (id, status) => api.patch(`/orders/${id}/status`, { status }),
     uploadOrderImage: (formData) => api.post('/orders/upload-image', formData, {
         headers: {
             'Content-Type': 'multipart/form-data',
@@ -93,37 +85,19 @@ export const orderService = {
 export const giftService = {
     // Fetches gifts with filtering and pagination (public facing)
     fetchAll: (params = {}) => api.get('/gifts', { params }),
-    // Fetches all gifts without filters (admin only, includes unavailable)
-    fetchAdminAll: () => api.get('/gifts/debug/all'),
-    create: (giftData) => api.post('/gifts', giftData),
-    update: (giftId, giftData) => api.put(`/gifts/${giftId}`, giftData),
-    remove: (giftId) => api.delete(`/gifts/${giftId}`),
 };
 
 export const reviewService = {
     fetchForGift: (giftId) => api.get(`/reviews/gift/${giftId}`),
     submit: (reviewData) => api.post('/reviews', reviewData),
-    fetchAll: () => api.get('/reviews'),
-    publish: (id) => api.patch(`/reviews/${id}/publish`),
-    remove: (id) => api.delete(`/reviews/${id}`),
 };
 
 export const customRequestService = {
     create: (requestData) => api.post('/custom-requests', requestData),
-    fetchAll: () => api.get('/custom-requests'),
-    updateStatus: (id, status) => api.patch(`/custom-requests/${id}/status`, { status }),
 };
 
 export const homepageService = {
     fetchMostBoughtGifts: (limit = 10) => api.get(`/orders/most-bought`, { params: { limit } }),
-};
-
-export const adminService = {
-    fetchDashboard: () => api.get('/admin/dashboard'),
-    fetchUsers: () => api.get('/admin/users'),
-    updateUser: (id, data) => api.patch(`/admin/users/${id}`, data),
-    deleteUser: (id) => api.delete(`/admin/users/${id}`),
-    savePushSubscription: (subscription) => api.post('/admin/push-subscribe', subscription),
 };
 
 export default api;

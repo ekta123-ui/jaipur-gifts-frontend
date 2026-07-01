@@ -128,9 +128,7 @@ const OrderForm = () => {
             
             if (fromCart) clearCart();
             
-            // 3. Success feedback
-            alert(`Thank you for your order! Your Reference ID is: ${orderId}. You can track the status in your Profile section.`);
-            setTimeout(() => navigate('/profile'), 100);
+            navigate('/order-confirmation', { state: { orderId } });
         } catch (error) {
             const serverError = error.response?.data?.error;
             const errorMsg = serverError ? `Server Error: ${serverError}` : "Failed to save order. Please check your connection.";

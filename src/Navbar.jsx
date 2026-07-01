@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
     HiOutlineHome, HiOutlineGift, HiOutlineChatAlt2,
     HiOutlineUser, HiMenu, HiX, HiOutlineShoppingBag,
-    HiOutlineAdjustments, HiOutlineLogout
+    HiOutlineLogout
 } from 'react-icons/hi';
 import { logout } from './api';
 import { getCartCount } from './utils/cart';
@@ -68,7 +68,6 @@ const Navbar = () => {
 
     // Check current auth status from localStorage
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-    const isAdmin = localStorage.getItem('userRole') === 'admin';
 
     // Filter out the Login link if already logged in
     const displayLinks = navLinks.filter(link => {
@@ -83,11 +82,6 @@ const Navbar = () => {
 
     if (!displayLinks.find(l => l.path === '/cart')) {
         displayLinks.push({ name: 'Cart', path: '/cart', icon: <HiOutlineShoppingBag /> });
-    }
-
-    // Add Admin Portal entry for all users
-    if (!displayLinks.find(l => l.path === '/admin/login')) {
-        displayLinks.splice(displayLinks.length - 1, 0, { name: 'Admin Portal', path: '/admin/login', icon: <HiOutlineAdjustments /> });
     }
 
     return (
